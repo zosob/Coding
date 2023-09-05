@@ -244,7 +244,7 @@ class Transformer(nn.Module):
                 Block(
                     dim = embed_dim,
                     n_heads=n_heads,
-                    mlp_ratio = mlp_ration,
+                    mlp_ratio = mlp_ratio,
                     qkv_bias=qkv_bias,
                     p=p,
                     attn_p=attn_p,
