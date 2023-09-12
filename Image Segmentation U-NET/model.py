@@ -57,7 +57,11 @@ class UNET(nn.Module):
 
         for idx in range(0, len(self.ups), 2):
             x = self.ups[idx](x)
-            skip_connections = skip_connections[idx//2]
+            skip_connection = skip_connections[idx//2]
+
+            if x.shape != skip_connections.shape:
+                x = tf.resize(x, size=skip_connection.shape[2:])
+
             concat_skip = torch.cat((skip_connections, x), dim = 1)
             x = self.ups[idx+1](concat_skip)
         
